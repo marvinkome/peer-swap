@@ -1,6 +1,5 @@
-import web3 from "./web3"
 import PeerSwap from "./build/PeerSwap.json"
+import web3 from "./web3"
 
-const instance = new web3.eth.Contract(JSON.parse(PeerSwap.abi), process.env.contractAddress)
-
-export default instance
+export const peerSwap = new web3.eth.Contract(PeerSwap.abi, process.env.NEXT_PUBLIC_ContractAddress)
+export default peerSwap

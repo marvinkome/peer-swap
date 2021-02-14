@@ -6,7 +6,7 @@
     "scripts": {
         "compile-contract": "node ./ethereum/compile.js",
         "deploy-contract": "node -r dotenv/config ./ethereum/deploy.js",
-        "compile-deploy": "compile-contract && deploy-contract",
+        "compile-deploy": "yarn compile-contract && yarn deploy-contract",
         "test": "mocha",
         "dev": "next dev -p 8008"
     },

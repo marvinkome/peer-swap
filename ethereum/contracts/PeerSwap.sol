@@ -10,16 +10,21 @@ contract PeerSwap {
     }
 
     Trade[] public allTrades;
+    mapping(address => uint256) public traders;
 
     function createTrade(address payable receiver) public payable {
-        Trade memory newTrade =
-            Trade({amount: msg.value, sender: msg.sender, receiver: receiver, complete: false});
+        require(receiver != msg.sender);
+        require(traders[msg.sender] == 0);
 
-        allTrades.push(newTrade);
+        allTrades.push(
+            Trade({amount: msg.value, sender: msg.sender, receiver: receiver, complete: false})
+        );
+        traders[msg.sender] = allTrades.length;
     }
 
-    function completeTrade(uint256 tradeIndex) public {
-        Trade storage trade = allTrades[tradeIndex];
+    function completeTrade() public {
+        uint256 tradeId = traders[msg.sender];
+        Trade storage trade = allTrades[tradeId - 1];
 
         // make sure it's the creator of the trade the completes a trade
         require(trade.sender == msg.sender);
@@ -29,5 +34,6 @@ contract PeerSwap {
 
         trade.complete = true;
         trade.receiver.transfer(trade.amount);
+        traders[msg.sender] = 0;
     }
 }
