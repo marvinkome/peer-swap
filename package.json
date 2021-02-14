@@ -8,7 +8,9 @@
         "deploy-contract": "node -r dotenv/config ./ethereum/deploy.js",
         "compile-deploy": "yarn compile-contract && yarn deploy-contract",
         "test": "mocha",
-        "dev": "next dev -p 8008"
+        "dev": "next dev -p 8008",
+        "build": "next build",
+        "start": "next start"
     },
     "engines": {
         "node": "10.23"
