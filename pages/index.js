@@ -1,5 +1,6 @@
 import { Flex, Button, Center, Heading, Text } from "@chakra-ui/react"
 import { Layout } from "components/Layout"
+import Link from "next/link"
 
 export default function Index() {
     return (
@@ -11,18 +12,22 @@ export default function Index() {
                     </Heading>
 
                     <Text align="center" marginTop="4rem">
-                        Trade your local currency for Ethereum and vice versa in a secure way
+                        Trade your local currency for Ethereum in a secure way
                     </Text>
 
-                    <Button
-                        marginTop="3rem"
-                        colorScheme="brand"
-                        px="4em"
-                        py="2em"
-                        borderRadius="full"
-                    >
-                        Use App
-                    </Button>
+                    <Link href="/transfer">
+                        <a>
+                            <Button
+                                marginTop="3rem"
+                                colorScheme="brand"
+                                px="4em"
+                                py="2em"
+                                borderRadius="full"
+                            >
+                                Use App
+                            </Button>
+                        </a>
+                    </Link>
                 </Flex>
             </Center>
         </Layout>
