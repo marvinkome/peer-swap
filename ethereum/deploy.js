@@ -1,3 +1,5 @@
+const fs = require("fs-extra")
+const path = require("path")
 const HDWalletProvider = require("@truffle/hdwallet-provider")
 const Web3 = require("web3")
 const contract = require("./build/PeerSwap.json")
@@ -21,9 +23,14 @@ const deploy = async () => {
         .deploy({ data: contract.evm.bytecode.object })
         .send({ from: accounts[0], gas: "1000000" })
 
-    console.log("Contract deployed to", result.options.address)
-    return
-    // TODO store address in config file
+    const address = result.options.address
+    console.log("Contract deployed to", address)
+
+    fs.outputJSONSync(path.resolve(__dirname, "../config.json"), {
+        contractAddress: address,
+    })
+
+    process.exit(0)
 }
 
 deploy()
