@@ -10,7 +10,8 @@
         "test": "mocha",
         "dev": "next dev -p 8008",
         "build": "next build",
-        "start": "next start"
+        "start": "next start",
+        "export": "next export"
     },
     "engines": {
         "node": "10.23"
